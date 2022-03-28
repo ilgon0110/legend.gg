@@ -1,6 +1,6 @@
 # Legend.gg (League of Legend E-Sport)
 
-## This repository can search specfic legend lol-progammers who retired or just debuted and compare about each others.
+### This repository can search specfic legend lol-progammers who retired or just debuted and compare about each others.
 
 - Main Page(HomePage)
 
@@ -8,4 +8,4 @@
 
 - Comparison Page
 
-## This repository is made of typescript & react.
+### This repository is made of typescript & react.
