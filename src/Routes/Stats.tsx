@@ -79,13 +79,11 @@ const Img = styled.img`
   top: 8px;
   margin: 0 auto;
 `;
-const Logo = styled.div<{ team: string | undefined }>`
+const Logo = styled.img`
   position: relative;
+  display: block;
   width: 32px;
   height: 32px;
-  background: url("/img/team_logo/${(props) => props.team}.png");
-  background-repeat: no-repeat;
-  background-size: cover;
   margin: 0 auto;
   top: 12px;
 `;
@@ -413,7 +411,10 @@ function Stats() {
             src={`${process.env.PUBLIC_URL}/img/profile/${newPlayerName}.png`}
             alt={newPlayerName ? newPlayerName : "loading"}
           ></Img>
-          <Logo team={playerData[dataIndex].team}></Logo>
+          <Logo
+            src={`${process.env.PUBLIC_URL}/img/team_logo/${playerData[dataIndex].team}.png`}
+            alt={playerData[dataIndex].team}
+          ></Logo>
           <LogoName>{playerData[dataIndex].team}</LogoName>
           <WinBar>
             <WinRateBar
