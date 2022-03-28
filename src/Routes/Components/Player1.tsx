@@ -53,11 +53,11 @@ const Profile = styled.div<{ bg: string }>`
   height: 227px;
   margin: 0 auto;
 `;
-const Logo = styled.div<{ team: string | undefined }>`
+const Logo = styled.div<{ t: string | undefined }>`
   position: relative;
   width: 32px;
   height: 32px;
-  background: url("/img/team_logo/${(props) => props.team}.png");
+  background: url("${process.env.PUBLIC_URL}/img/team_logo/${(a) => a.t}.png");
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0 auto;
@@ -243,7 +243,7 @@ function Player1({
         </svg>
       </Button>
       <Profile bg={findName} />
-      <Logo team={playerData[dataIndex].team} />
+      <Logo t={playerData[dataIndex].team} />
       <LogoName>{playerData[dataIndex].team}</LogoName>
       <DarkBlue>
         <DarkBlueItem>
