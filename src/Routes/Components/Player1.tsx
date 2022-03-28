@@ -45,9 +45,9 @@ const Button = styled.button`
     height: 25px;
   }
 `;
-const Profile = styled.div<{ bgimage: string }>`
+const Profile = styled.div<{ bg: string }>`
   position: relative;
-  background: url("/img/profile/${(props) => props.bgimage}.png");
+  background: url("${process.env.PUBLIC_URL}/img/profile/${(a) => a.bg}.png");
   background-size: cover;
   width: 170px;
   height: 227px;
@@ -242,7 +242,7 @@ function Player1({
           </g>
         </svg>
       </Button>
-      <Profile bgimage={findName} />
+      <Profile bg={findName} />
       <Logo team={playerData[dataIndex].team} />
       <LogoName>{playerData[dataIndex].team}</LogoName>
       <DarkBlue>

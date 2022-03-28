@@ -30,9 +30,9 @@ interface IplayerData {
   pogpoint: number;
   pogpointRank: number;
 }
-const Profile = styled.div<{ bgimage: string }>`
+const Profile = styled.div<{ bg: string }>`
   position: relative;
-  background: url("/img/profile/${(props) => props.bgimage}.png");
+  background: url("${process.env.PUBLIC_URL}/img/profile/${(a) => a.bg}.png");
   background-size: cover;
   width: 170px;
   height: 227px;
@@ -241,7 +241,7 @@ function Player2({
           </g>
         </svg>
       </Button>
-      <Profile bgimage={findName2} />
+      <Profile bg={findName2} />
       <Logo team={playerData[dataIndex].team} />
       <LogoName>{playerData[dataIndex].team}</LogoName>
       <DarkBlue>
