@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/legend.gg/static/css/main.88975cc2.css",
-    "main.js": "/legend.gg/static/js/main.8da8e40e.js",
+    "main.js": "/legend.gg/static/js/main.1cb0ae7d.js",
     "index.html": "/legend.gg/index.html",
     "main.88975cc2.css.map": "/legend.gg/static/css/main.88975cc2.css.map",
-    "main.8da8e40e.js.map": "/legend.gg/static/js/main.8da8e40e.js.map"
+    "main.1cb0ae7d.js.map": "/legend.gg/static/js/main.1cb0ae7d.js.map"
   },
   "entrypoints": [
     "static/css/main.88975cc2.css",
-    "static/js/main.8da8e40e.js"
+    "static/js/main.1cb0ae7d.js"
   ]
 }
