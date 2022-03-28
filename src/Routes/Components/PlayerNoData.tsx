@@ -14,9 +14,9 @@ const Button = styled.button`
     height: 25px;
   }
 `;
-const Profile = styled.div<{ bgimage: string }>`
+const Profile = styled.div<{ bg: string }>`
   position: relative;
-  background: url("/img/profile/${(props) => props.bgimage}.png");
+  background: url("${process.env.PUBLIC_URL}/img/profile/${(a) => a.bg}.png");
   background-size: cover;
   width: 170px;
   height: 227px;
@@ -62,7 +62,7 @@ function PlayerNoData({
           </g>
         </svg>
       </Button>
-      <Profile bgimage={name}></Profile>
+      <Profile bg={name}></Profile>
       <Text>
         {year}년 {season}의 데이터가 없습니다
       </Text>
