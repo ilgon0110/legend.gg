@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import StatsProfile from "./Components/StatsProfile";
-import { data2013, data2015, playersId, playersText } from "../data";
+import { data2013, data2015, playersId, playersText } from "../../../data";
 import { useMatch } from "react-router-dom";
 import { useEffect, useState } from "react";
-import NoData from "./Components/NoData";
+import NoData from "../NoData";
 import ApexChart from "react-apexcharts";
 
 interface IplayerData {

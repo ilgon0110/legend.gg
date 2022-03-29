@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { data2013, playersId } from "../data";
+import { data2013, playersId } from "../../../data";
 import { useEffect, useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
-import Player1 from "./Components/Player1";
-import Player2 from "./Components/Player2";
-import PlayerChart from "./Components/PlayerChart";
+import Player1 from "./Player1";
+import Player2 from "./Player2";
+import PlayerChart from "./PlayerChart";
 
 interface Idata {
   players: string;
