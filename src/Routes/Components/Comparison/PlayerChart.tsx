@@ -1,7 +1,7 @@
 import ApexChart from "react-apexcharts";
-import { data2013, data2015 } from "../../data";
+import { data2013, data2015 } from "../../../data";
 import { useEffect, useState } from "react";
-import NoData from "./NoData";
+import NoData from "../NoData";
 import { useNavigate } from "react-router-dom";
 
 interface IplayerData {

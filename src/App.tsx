@@ -4,7 +4,6 @@ import Home from "./Routes/Home";
 import Compared from "./Routes/Components/Comparison/Compared";
 import Stats from "./Routes/Components/Stat/Stats";
 import Header from "./Routes/Components/Header";
-import Player1 from "./Routes/Components/Comparison/Player1";
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { data2013, data2015, playersId } from "../../data";
+import { data2013, data2015, playersId } from "../../../data";
 import { useEffect, useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import PlayerNoData from "./PlayerNoData";
