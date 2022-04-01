@@ -80,17 +80,17 @@ const ChartText = styled.h1`
   position: relative;
   text-align: center;
   color: white;
-  font-size: 20px;
   line-height: 30px;
+  font-size: 20px;
   top: 10%;
 `;
 const ChartText2 = styled.h1`
   position: relative;
   text-align: center;
-  color: white;
+  color: ${(props) => props.theme.mint};
   font-size: 16px;
+  font-weight: bold;
   top: 13%;
-  opacity: 0.7;
 `;
 const Chart = styled.div`
   position: relative;
@@ -139,7 +139,6 @@ function Home() {
   const history = useNavigate();
   const comparedMatch = useMatch("/compared");
   const comparedMatch2 = useMatch("/compared/2");
-  console.log(comparedMatch);
   const [dataCheck, setDataCheck] = useState(false);
   const [dataCheck2, setDataCheck2] = useState(false);
   const [dataPlayer, setDataPlayer] = useState<string>("faker");
@@ -165,7 +164,6 @@ function Home() {
       Years.includes(data.years) &&
       Seasons.includes(data.seasons)
     ) {
-      console.log("통과");
       setDataCheck(true);
       history(`${findId}`);
       const setData = () => {
@@ -174,6 +172,9 @@ function Home() {
         setDataSeasons(data.seasons);
       };
       setData();
+      setValue("players", "");
+      setValue("seasons", "");
+      setValue("years", "");
     } else if (!playersName.includes(data.players)) {
       setError("players", { message: "없는 선수입니다." });
       setDataCheck(false);
@@ -184,7 +185,6 @@ function Home() {
       setError("seasons", { message: "없는 시즌입니다." });
       setDataCheck(false);
     }
-    console.log(errors);
   };
 
   const onValid2 = (data: Idata) => {
@@ -196,7 +196,6 @@ function Home() {
       Years.includes(data.years2) &&
       Seasons.includes(data.seasons2)
     ) {
-      console.log("통과2");
       setDataCheck2(true);
       history(`${findId}`);
       const setData2 = () => {
@@ -205,6 +204,9 @@ function Home() {
         setDataSeasons2(data.seasons2);
       };
       setData2();
+      setValue("players2", "");
+      setValue("seasons2", "");
+      setValue("years2", "");
     } else if (!playersName.includes(data.players2)) {
       setError("players2", { message: "없는 선수입니다." });
       setDataCheck2(false);
@@ -215,7 +217,6 @@ function Home() {
       setError("seasons2", { message: "없는 시즌입니다." });
       setDataCheck2(false);
     }
-    console.log(errors);
   };
   const resetError = () => {
     setError("players", { message: "" });
@@ -241,149 +242,6 @@ function Home() {
       setDataSeasons2("Spring");
     }
   }, [comparedMatch2]);
-  // useEffect(() => {
-  //   if (dataYears === "2013" && dataYears2 === "2015") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2013" && dataYears2 === "2016") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2013" && dataYears2 === "2017") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2013" && dataYears2 === "2018") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2013" && dataYears2 === "2019") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2013" && dataYears2 === "2020") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2013" && dataYears2 === "2021") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2014" && dataYears2 === "2015") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2014" && dataYears2 === "2016") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2014" && dataYears2 === "2017") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2014" && dataYears2 === "2018") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2014" && dataYears2 === "2019") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2014" && dataYears2 === "2020") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2014" && dataYears2 === "2021") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2015" && dataYears2 === "2013") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2015" && dataYears2 === "2014") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2016" && dataYears2 === "2013") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2016" && dataYears2 === "2014") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2017" && dataYears2 === "2013") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2017" && dataYears2 === "2014") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2018" && dataYears2 === "2013") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2018" && dataYears2 === "2014") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2019" && dataYears2 === "2013") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2019" && dataYears2 === "2014") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2020" && dataYears2 === "2013") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2020" && dataYears2 === "2014") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2021" && dataYears2 === "2013") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   } else if (dataYears === "2021" && dataYears2 === "2014") {
-  //     alert(`${dataYears}연도와 ${dataYears2}연도는 비교할 수 없습니다.`);
-  //     setDataYears("");
-  //     setDataYears2("");
-  //     history("/");
-  //   }
-  // }, [dataYears, dataYears2, history]);
 
   return (
     <Container>
@@ -400,7 +258,7 @@ function Home() {
               <Input
                 {...register("players", { required: true })}
                 list="players"
-                placeholder="선수선택"
+                placeholder="선수입력"
               />
               <Error>{errors?.players?.message}</Error>
               <DataList id="players">
@@ -411,7 +269,7 @@ function Home() {
               <Input
                 {...register("years", { required: true })}
                 list="years"
-                placeholder="연도선택"
+                placeholder="연도입력"
               ></Input>
               <DataList id="years">
                 {Years.map((years) => (
@@ -422,7 +280,7 @@ function Home() {
               <Input
                 {...register("seasons", { required: true })}
                 list="seasons"
-                placeholder="시즌선택"
+                placeholder="시즌입력"
               ></Input>
               <DataList id="seasons">
                 {Seasons.map((years) => (
@@ -494,7 +352,7 @@ function Home() {
               <Input
                 {...register("players2", { required: false })}
                 list="players2"
-                placeholder="선수선택"
+                placeholder="선수입력"
               />
               <DataList id="players2">
                 {playersName.map((name) => (
@@ -505,7 +363,7 @@ function Home() {
               <Input
                 {...register("years2", { required: false })}
                 list="years2"
-                placeholder="연도선택"
+                placeholder="연도입력"
               ></Input>
               <DataList id="years2">
                 {Years.map((years) => (
@@ -516,7 +374,7 @@ function Home() {
               <Input
                 {...register("seasons2", { required: false })}
                 list="seasons2"
-                placeholder="시즌선택"
+                placeholder="시즌입력"
               ></Input>
               <DataList id="seasons2">
                 {Seasons.map((years) => (

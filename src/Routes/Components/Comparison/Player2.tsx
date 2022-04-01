@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { data2013, data2015, playersId } from "../../../data";
 import { useEffect, useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
-import PlayerNoData from "./PlayerNoData";
+import Player2NoData from "./Player2NoData";
 
 interface IplayerData {
   id: number;
@@ -216,8 +216,6 @@ function Player2({
 
   useEffect(() => {
     setPlayerData();
-    console.log("setPlayerData 실행");
-    console.log(playerData[dataIndex]);
     if (playerData[dataIndex].winRate === undefined) {
       setDataCheck(false);
     } else {
@@ -392,7 +390,7 @@ function Player2({
       <Seasons>{findSeasons2}</Seasons>
     </>
   ) : (
-    <PlayerNoData name={findName2} year={findYears2} season={findSeasons2} />
+    <Player2NoData name={findName2} year={findYears2} season={findSeasons2} />
   );
 }
 

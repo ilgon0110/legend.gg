@@ -43,7 +43,7 @@ function PlayerNoData({
 }) {
   const history = useNavigate();
   const backCompared = () => {
-    history(`/compared`);
+    history("");
   };
 
   return (

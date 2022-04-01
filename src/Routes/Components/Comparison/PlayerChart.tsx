@@ -50,9 +50,9 @@ function PlayerChart({
   findYears2: string;
   findSeasons2: string;
 }) {
-  const [dataCheck, setDataCheck] = useState(true);
+  const [dataCheck, setDataCheck] = useState(false);
   const [dataIndex, setDataIndex] = useState(0);
-  const [dataCheck2, setDataCheck2] = useState(true);
+  const [dataCheck2, setDataCheck2] = useState(false);
   const [dataIndex2, setDataIndex2] = useState(0);
   const playerData: IplayerData[] = [
     data2013.results[0][2013].spring[findName],
@@ -340,8 +340,6 @@ function PlayerChart({
   ];
   useEffect(() => {
     setPlayer1Data();
-    console.log("setPlayerData 실행");
-    console.log(playerData[dataIndex]);
     if (playerData[dataIndex].winRate === undefined) {
       setDataCheck(false);
     } else {
@@ -350,8 +348,6 @@ function PlayerChart({
   }, [setPlayer1Data]);
   useEffect(() => {
     setPlayer2Data();
-    console.log("setPlayerData2 실행");
-    console.log(player2Data[dataIndex2]);
     if (player2Data[dataIndex2].winRate === undefined) {
       setDataCheck2(false);
     } else {

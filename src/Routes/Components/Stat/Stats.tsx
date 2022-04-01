@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { data2013, data2015, playersId, playersText } from "../../../data";
-import { useMatch } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NoData from "../NoData";
 import ApexChart from "react-apexcharts";
@@ -160,11 +160,12 @@ const YearSelect = styled.select`
     color: blue;
   }
 `;
-const SeasonSelect = styled.span`
+const SeasonSelect = styled.span<{ opacity: number }>`
   font-size: 20px;
   color: white;
   padding: 32px;
   font-weight: normal;
+  opacity: ${(props) => props.opacity};
   &:hover {
     cursor: pointer;
   }
@@ -264,6 +265,9 @@ function Stats() {
   const [dataIndex, setDataIndex] = useState(0);
   const [values, setValues] = useState("2013");
   const [seasons, setSeasons] = useState("Spring");
+  const [springOpacity, setSpringOpacity] = useState(0.5);
+  const [summerOpacity, setSummerOpacity] = useState(0.5);
+  const [worldOpacity, setWorldOpacity] = useState(0.5);
   const selectValues = [
     "2013",
     "2014",
@@ -401,7 +405,25 @@ function Stats() {
           : null,
     },
   ];
-  useEffect(() => springClicked(), [values]);
+  useEffect(() => {
+    springClicked();
+  }, [values]);
+  useEffect(() => {
+    if (seasons === "Spring") {
+      setSpringOpacity(1);
+      setSummerOpacity(0.5);
+      setWorldOpacity(0.5);
+    } else if (seasons === "Summer") {
+      setSpringOpacity(0.5);
+      setSummerOpacity(1);
+      setWorldOpacity(0.5);
+    } else if (seasons === "Worlds") {
+      setSpringOpacity(0.5);
+      setSummerOpacity(0.5);
+      setWorldOpacity(1);
+    }
+  }, [seasons]);
+  console.log(springOpacity, summerOpacity, worldOpacity);
   return (
     <Container>
       <Item>
@@ -511,9 +533,15 @@ function Stats() {
             </option>
           ))}
         </YearSelect>
-        <SeasonSelect onClick={springClicked}>Spring</SeasonSelect>
-        <SeasonSelect onClick={summerClicked}>Summer</SeasonSelect>
-        <SeasonSelect onClick={worldClicked}>Worlds</SeasonSelect>
+        <SeasonSelect onClick={springClicked} opacity={springOpacity}>
+          Spring
+        </SeasonSelect>
+        <SeasonSelect onClick={summerClicked} opacity={summerOpacity}>
+          Summer
+        </SeasonSelect>
+        <SeasonSelect onClick={worldClicked} opacity={worldOpacity}>
+          Worlds
+        </SeasonSelect>
         {playerData[dataIndex].kda === undefined ? (
           <NoData year={values} season={seasons} />
         ) : (

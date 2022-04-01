@@ -110,9 +110,7 @@ function Header() {
       ? history(`/stats/${findName}`)
       : alert("선수 이름을 다시 입력해주세요");
     setValue("keyword", "");
-    console.log(data);
   };
-  console.log("width :", window.outerWidth, "height: ", window.innerHeight);
   return (
     <>
       <Nav>
