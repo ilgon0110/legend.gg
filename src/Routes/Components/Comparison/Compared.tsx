@@ -6,6 +6,7 @@ import { useMatch, useNavigate } from "react-router-dom";
 import Player1 from "./Player1";
 import Player2 from "./Player2";
 import PlayerChart from "./PlayerChart";
+import DataYearError from "./DataYearError";
 
 interface Idata {
   players: string;
@@ -139,14 +140,16 @@ function Home() {
   const history = useNavigate();
   const comparedMatch = useMatch("/compared");
   const comparedMatch2 = useMatch("/compared/2");
+  const [dataYearCheck, setDataYearCheck] = useState<number>();
+  const [dataYearCheck2, setDataYearCheck2] = useState<number>();
   const [dataCheck, setDataCheck] = useState(false);
   const [dataCheck2, setDataCheck2] = useState(false);
-  const [dataPlayer, setDataPlayer] = useState<string>("faker");
-  const [dataYears, setDataYears] = useState<string>("2013");
-  const [dataSeasons, setDataSeasons] = useState<string>("Spring");
-  const [dataPlayer2, setDataPlayer2] = useState<string>("faker");
-  const [dataYears2, setDataYears2] = useState<string>("2013");
-  const [dataSeasons2, setDataSeasons2] = useState<string>("Spring");
+  const [dataPlayer, setDataPlayer] = useState<string>("");
+  const [dataYears, setDataYears] = useState<string>("");
+  const [dataSeasons, setDataSeasons] = useState<string>("");
+  const [dataPlayer2, setDataPlayer2] = useState<string>("");
+  const [dataYears2, setDataYears2] = useState<string>("");
+  const [dataSeasons2, setDataSeasons2] = useState<string>("");
   const playersName = Object.keys(data2013.results[0][2013].spring);
   const playersKey = Object.values(playersId).map((id) => id.id);
   const players = playersKey.map((b, index) => {
@@ -172,6 +175,12 @@ function Home() {
         setDataSeasons(data.seasons);
       };
       setData();
+      if (dataYearCheck === null) return;
+      if (data.years === "2013" || data.years === "2014") {
+        setDataYearCheck(13);
+      } else {
+        setDataYearCheck(15);
+      }
       setValue("players", "");
       setValue("seasons", "");
       setValue("years", "");
@@ -186,7 +195,7 @@ function Home() {
       setDataCheck(false);
     }
   };
-
+  console.log(dataYearCheck);
   const onValid2 = (data: Idata) => {
     const findId = players
       .map((a) => (a.name === data.players2 ? a.id : null))
@@ -207,6 +216,13 @@ function Home() {
       setValue("players2", "");
       setValue("seasons2", "");
       setValue("years2", "");
+      console.log(data.years2);
+      if (dataYearCheck2 === null) return;
+      if (data.years2 === "2013" || data.years2 === "2014") {
+        setDataYearCheck2(13);
+      } else {
+        setDataYearCheck2(15);
+      }
     } else if (!playersName.includes(data.players2)) {
       setError("players2", { message: "없는 선수입니다." });
       setDataCheck2(false);
@@ -229,20 +245,22 @@ function Home() {
   useEffect(() => {
     if (comparedMatch !== null) {
       setDataCheck(false);
-      setDataPlayer("faker");
-      setDataYears("2013");
-      setDataSeasons("Spring");
+      setDataPlayer("");
+      setDataYears("");
+      setDataSeasons("");
+      setDataYearCheck(undefined);
     }
   }, [comparedMatch]);
   useEffect(() => {
     if (comparedMatch2 !== null) {
       setDataCheck2(false);
-      setDataPlayer2("faker");
-      setDataYears2("2013");
-      setDataSeasons2("Spring");
+      setDataPlayer2("");
+      setDataYears2("");
+      setDataSeasons2("");
+      setDataYearCheck2(undefined);
     }
   }, [comparedMatch2]);
-
+  console.log(dataYearCheck, dataYearCheck2);
   return (
     <Container>
       <Item>
@@ -319,26 +337,30 @@ function Home() {
           )}
         </InputPlayer>
       </Item>
-      <Item>
-        <ChartText>
-          ※13-14 시즌 선수들은 15시즌 이후 선수들과 비교가 불가능합니다.
-          <br />
-          차트엔 문제 없어 보이지만 년도를 꼭 구분해줘야 합니다!
-        </ChartText>
-        <ChartText2>
-          ex)13페이커와 21쇼메이커 비교 불가(지표 기준이 다름)
-        </ChartText2>
-        <Chart>
-          <PlayerChart
-            findName={dataPlayer}
-            findYears={dataYears}
-            findSeasons={dataSeasons}
-            findName2={dataPlayer2}
-            findYears2={dataYears2}
-            findSeasons2={dataSeasons2}
-          />
-        </Chart>
-      </Item>
+      {dataYearCheck === dataYearCheck2 ||
+      dataYearCheck === undefined ||
+      dataYearCheck2 === undefined ? (
+        <Item>
+          <ChartText>
+            ※13-14 시즌 선수들은 15시즌 이후 선수들과 비교가 불가능합니다.
+          </ChartText>
+          <ChartText2>
+            ex)13페이커와 21쇼메이커 비교 불가(지표 기준이 다름)
+          </ChartText2>
+          <Chart>
+            <PlayerChart
+              findName={dataPlayer}
+              findYears={dataYears}
+              findSeasons={dataSeasons}
+              findName2={dataPlayer2}
+              findYears2={dataYears2}
+              findSeasons2={dataSeasons2}
+            />
+          </Chart>
+        </Item>
+      ) : (
+        <DataYearError />
+      )}
       <Item>
         <InputPlayer>
           {dataCheck2 ? (

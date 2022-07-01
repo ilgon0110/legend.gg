@@ -226,96 +226,6 @@ function PlayerChart({
       setDataIndex2(26);
     }
   };
-  const player1ChartData: IChartData[] = [
-    {
-      x: "KDA",
-      y:
-        playerData[dataIndex].kda !== undefined
-          ? playerData[dataIndex].kda * 10
-          : null,
-    },
-    {
-      x: "KP",
-      y:
-        dataIndex < 6 && playerData[dataIndex].kp !== undefined
-          ? playerData[dataIndex].kp
-          : dataIndex >= 6 && playerData[dataIndex].gd10 !== undefined
-          ? playerData[dataIndex].gd10
-          : null,
-    },
-    {
-      x: "DTH",
-      y:
-        dataIndex < 6 && playerData[dataIndex].dth !== undefined
-          ? playerData[dataIndex].dth
-          : dataIndex >= 6 && playerData[dataIndex].cs10 !== undefined
-          ? playerData[dataIndex].cs10 * 10
-          : null,
-    },
-    {
-      x: "GOLD",
-      y:
-        dataIndex < 6 && playerData[dataIndex].gold !== undefined
-          ? playerData[dataIndex].gold
-          : dataIndex >= 6 && playerData[dataIndex].dpm !== undefined
-          ? playerData[dataIndex].dpm / 10
-          : null,
-    },
-    {
-      x: "WIN",
-      y:
-        dataIndex < 6 && playerData[dataIndex].winRate !== undefined
-          ? playerData[dataIndex].winRate
-          : dataIndex >= 6 && playerData[dataIndex].dmg !== undefined
-          ? playerData[dataIndex].dmg
-          : null,
-    },
-  ];
-  const player2ChartData: IChartData[] = [
-    {
-      x: "KDA",
-      y:
-        player2Data[dataIndex2].kda !== undefined
-          ? player2Data[dataIndex2].kda * 10
-          : null,
-    },
-    {
-      x: "KP",
-      y:
-        dataIndex2 < 6 && player2Data[dataIndex2].kp !== undefined
-          ? player2Data[dataIndex2].kp
-          : dataIndex2 >= 6 && player2Data[dataIndex2].gd10 !== undefined
-          ? player2Data[dataIndex2].gd10
-          : null,
-    },
-    {
-      x: "DTH",
-      y:
-        dataIndex2 < 6 && player2Data[dataIndex2].dth !== undefined
-          ? player2Data[dataIndex2].dth
-          : dataIndex2 >= 6 && player2Data[dataIndex2].cs10 !== undefined
-          ? player2Data[dataIndex2].cs10 * 10
-          : null,
-    },
-    {
-      x: "GOLD",
-      y:
-        dataIndex2 < 6 && player2Data[dataIndex2].gold !== undefined
-          ? player2Data[dataIndex2].gold
-          : dataIndex2 >= 6 && player2Data[dataIndex2].dpm !== undefined
-          ? player2Data[dataIndex2].dpm / 10
-          : null,
-    },
-    {
-      x: "WIN",
-      y:
-        dataIndex2 < 6 && player2Data[dataIndex2].winRate !== undefined
-          ? player2Data[dataIndex2].winRate
-          : dataIndex2 >= 6 && player2Data[dataIndex2].dmg !== undefined
-          ? player2Data[dataIndex2].dmg
-          : null,
-    },
-  ];
   const playerNoData = [
     {
       x: "KDA",
@@ -338,9 +248,106 @@ function PlayerChart({
       y: 0,
     },
   ];
+  const player1ChartData: IChartData[] =
+    findName === ""
+      ? playerNoData
+      : [
+          {
+            x: "KDA",
+            y:
+              playerData[dataIndex].kda !== undefined
+                ? playerData[dataIndex].kda * 10
+                : null,
+          },
+          {
+            x: "KP",
+            y:
+              dataIndex < 6 && playerData[dataIndex].kp !== undefined
+                ? playerData[dataIndex].kp
+                : dataIndex >= 6 && playerData[dataIndex].gd10 !== undefined
+                ? playerData[dataIndex].gd10
+                : null,
+          },
+          {
+            x: "DTH",
+            y:
+              dataIndex < 6 && playerData[dataIndex].dth !== undefined
+                ? playerData[dataIndex].dth
+                : dataIndex >= 6 && playerData[dataIndex].cs10 !== undefined
+                ? playerData[dataIndex].cs10 * 10
+                : null,
+          },
+          {
+            x: "GOLD",
+            y:
+              dataIndex < 6 && playerData[dataIndex].gold !== undefined
+                ? playerData[dataIndex].gold
+                : dataIndex >= 6 && playerData[dataIndex].dpm !== undefined
+                ? playerData[dataIndex].dpm / 10
+                : null,
+          },
+          {
+            x: "WIN",
+            y:
+              dataIndex < 6 && playerData[dataIndex].winRate !== undefined
+                ? playerData[dataIndex].winRate
+                : dataIndex >= 6 && playerData[dataIndex].dmg !== undefined
+                ? playerData[dataIndex].dmg
+                : null,
+          },
+        ];
+  const player2ChartData: IChartData[] =
+    findName2 === ""
+      ? playerNoData
+      : [
+          {
+            x: "KDA",
+            y:
+              player2Data[dataIndex2].kda !== undefined
+                ? player2Data[dataIndex2].kda * 10
+                : null,
+          },
+          {
+            x: "KP",
+            y:
+              dataIndex2 < 6 && player2Data[dataIndex2].kp !== undefined
+                ? player2Data[dataIndex2].kp
+                : dataIndex2 >= 6 && player2Data[dataIndex2].gd10 !== undefined
+                ? player2Data[dataIndex2].gd10
+                : null,
+          },
+          {
+            x: "DTH",
+            y:
+              dataIndex2 < 6 && player2Data[dataIndex2].dth !== undefined
+                ? player2Data[dataIndex2].dth
+                : dataIndex2 >= 6 && player2Data[dataIndex2].cs10 !== undefined
+                ? player2Data[dataIndex2].cs10 * 10
+                : null,
+          },
+          {
+            x: "GOLD",
+            y:
+              dataIndex2 < 6 && player2Data[dataIndex2].gold !== undefined
+                ? player2Data[dataIndex2].gold
+                : dataIndex2 >= 6 && player2Data[dataIndex2].dpm !== undefined
+                ? player2Data[dataIndex2].dpm / 10
+                : null,
+          },
+          {
+            x: "WIN",
+            y:
+              dataIndex2 < 6 && player2Data[dataIndex2].winRate !== undefined
+                ? player2Data[dataIndex2].winRate
+                : dataIndex2 >= 6 && player2Data[dataIndex2].dmg !== undefined
+                ? player2Data[dataIndex2].dmg
+                : null,
+          },
+        ];
+
   useEffect(() => {
     setPlayer1Data();
-    if (playerData[dataIndex].winRate === undefined) {
+    if (findName !== "" && playerData[dataIndex].winRate === undefined) {
       setDataCheck(false);
     } else {
       setDataCheck(true);
@@ -348,7 +355,7 @@ function PlayerChart({
   }, [setPlayer1Data]);
   useEffect(() => {
     setPlayer2Data();
-    if (player2Data[dataIndex2].winRate === undefined) {
+    if (findName2 !== "" && player2Data[dataIndex2].winRate === undefined) {
       setDataCheck2(false);
     } else {
       setDataCheck2(true);

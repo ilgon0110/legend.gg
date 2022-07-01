@@ -121,7 +121,7 @@ function Player2({
   findYears2: string;
   findSeasons2: string;
 }) {
-  const [dataCheck, setDataCheck] = useState(true);
+  const [dataCheck, setDataCheck] = useState(false);
   const [dataIndex, setDataIndex] = useState(0);
   const history = useNavigate();
   const playerData: IplayerData[] = [
@@ -216,7 +216,7 @@ function Player2({
 
   useEffect(() => {
     setPlayerData();
-    if (playerData[dataIndex].winRate === undefined) {
+    if (findName2 === "" || playerData[dataIndex].winRate === undefined) {
       setDataCheck(false);
     } else {
       setDataCheck(true);

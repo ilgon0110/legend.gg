@@ -91,7 +91,7 @@ const DarkBlueItem = styled.div`
 `;
 const Score = styled.h1`
   margin-bottom: 2px;
-  color: ${(props) => props.theme.mint};
+  color: #008ffb;
   font-weight: 600;
 `;
 const Nth = styled.h1`
@@ -122,7 +122,7 @@ function Player1({
   findYears: string;
   findSeasons: string;
 }) {
-  const [dataCheck, setDataCheck] = useState(true);
+  const [dataCheck, setDataCheck] = useState(false);
   const [dataIndex, setDataIndex] = useState(0);
   const history = useNavigate();
   const playerData: IplayerData[] = [
@@ -213,7 +213,7 @@ function Player1({
   };
   useEffect(() => {
     setPlayerData();
-    if (playerData[dataIndex].winRate === undefined) {
+    if (findName === "" || playerData[dataIndex].winRate === undefined) {
       setDataCheck(false);
     } else {
       setDataCheck(true);

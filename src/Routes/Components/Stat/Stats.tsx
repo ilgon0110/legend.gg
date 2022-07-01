@@ -67,7 +67,8 @@ const Profile = styled.div`
   height: 97%;
   margin-top: 8px;
   background: transparent;
-  border: 1px solid ${(props) => props.theme.silver};
+  //border: 1px solid ${(props) => props.theme.silver};
+  border-radius: 2px;
   box-shadow: 0px 0px 6px #00000029;
 `;
 const Img = styled.img`
